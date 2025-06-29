@@ -1,4 +1,4 @@
-# n8n_project
+# n8n_project_autentification
 ### <img align="left" height="100" src="https://img.icons8.com/?size=100&id=63777&format=png&color=000000"/>Resumo do projeto:
 Exibe uma tela de login personalizada, valida as credenciais com dados do Google Sheets e, se corretas, exibe um painel para gerenciamento de instâncias.
 <h3>obs: foi usado como banco de dados o Google Sheets, mas vc pode usar qualquer outro!<h3/>
