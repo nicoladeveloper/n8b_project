@@ -8,9 +8,11 @@ Webhook /html: Mostra o HTML da tela de login.
 Webhook /auth: Recebe usuário e senha.
 
 Google Sheets: Consulta uma planilha com os dados dos usuários.
-<img align="left" height="300" src="https://i.postimg.cc/LsvZ1nwW/Altentifica-o.png"/>
+
 If: Verifica se encontrou o usuário.
 
 Respond to Webhook: Retorna sucesso ou erro.
 HTML: Estrutura visual responsiva e moderna com dashboard.
+
+<img align="left" height="300" src="https://i.postimg.cc/LsvZ1nwW/Altentifica-o.png"/>
 
