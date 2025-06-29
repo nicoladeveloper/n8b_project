@@ -3,7 +3,7 @@
 Exibe uma tela de login personalizada, valida as credenciais com dados do Google Sheets e, se corretas, exibe um painel para gerenciamento de instâncias.
 obs: foi usado como banco de dados o Google Sheets, mas vc pode usar qualquer outro!
 
-<h2>🔍 Componentes principais:
+<h2>Componentes principais:
 Webhook /html: Mostra o HTML da tela de login.
 
 Webhook /auth: Recebe usuário e senha.
