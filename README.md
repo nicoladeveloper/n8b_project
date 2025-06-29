@@ -17,5 +17,3 @@ HTML: Estrutura visual responsiva e moderna com dashboard.<h2/>
 
 <img align="left" height="300" src="https://i.postimg.cc/LsvZ1nwW/Altentifica-o.png"/>
 <img align="left" height ="300" src="https://i.postimg.cc/x17gkQjx/logando-Usuario.png"/>
- 
-
