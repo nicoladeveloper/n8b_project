@@ -1,0 +1,276 @@
+{
+  "name": "TelaDeAuten",
+  "nodes": [
+    {
+      "parameters": {
+        "html": "<!DOCTYPE html>\n<html lang=\"pt-BR\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Sistema de Login</title>\n    <meta name=\"description\" content=\"Sistema moderno de autenticação e gerenciamento de instâncias\">\n    <style>\n        * {\n            margin: 0;\n            padding: 0;\n            box-sizing: border-box;\n        }\n\n        body {\n            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;\n            background: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 100%);\n            min-height: 100vh;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            padding: 1rem;\n        }\n\n        .container {\n            background: white;\n            border-radius: 1rem;\n            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);\n            padding: 2rem;\n            width: 100%;\n            max-width: 400px;\n            transform: translateY(0);\n            transition: all 0.5s ease;\n        }\n\n        .container:hover {\n            transform: translateY(-2px);\n            box-shadow: 0 32px 64px -12px rgba(0, 0, 0, 0.35);\n        }\n\n        .header {\n            text-align: center;\n            margin-bottom: 2rem;\n        }\n\n        .icon-container {\n            width: 4rem;\n            height: 4rem;\n            background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);\n            border-radius: 50%;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            margin: 0 auto 1rem;\n            transition: transform 0.3s ease;\n        }\n\n        .icon-container:hover {\n            transform: scale(1.05);\n        }\n\n        .icon {\n            width: 1.75rem;\n            height: 1.75rem;\n            stroke: white;\n            stroke-width: 2;\n            fill: none;\n        }\n\n        h1 {\n            font-size: 1.875rem;\n            font-weight: 700;\n            color: #1f2937;\n            margin-bottom: 0.5rem;\n        }\n\n        .subtitle {\n            color: #6b7280;\n            font-size: 1rem;\n        }\n\n        .form-group {\n            margin-bottom: 1.5rem;\n        }\n\n        label {\n            display: block;\n            font-size: 0.875rem;\n            font-weight: 500;\n            color: #374151;\n            margin-bottom: 0.5rem;\n        }\n\n        .input-container {\n            position: relative;\n        }\n\n        .input-icon {\n            position: absolute;\n            left: 0.75rem;\n            top: 50%;\n            transform: translateY(-50%);\n            width: 1.25rem;\n            height: 1.25rem;\n            stroke: #9ca3af;\n            stroke-width: 2;\n            fill: none;\n        }\n\n        input {\n            width: 100%;\n            padding: 0.75rem 0.75rem 0.75rem 3rem;\n            border: 1px solid #d1d5db;\n            border-radius: 0.5rem;\n            font-size: 1rem;\n            transition: all 0.2s ease;\n            background: white;\n        }\n\n        input:focus {\n            outline: none;\n            border-color: #3b82f6;\n            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);\n        }\n\n        input::placeholder {\n            color: #9ca3af;\n        }\n\n        .btn {\n            width: 100%;\n            padding: 0.75rem 1.5rem;\n            border: none;\n            border-radius: 0.5rem;\n            font-size: 1rem;\n            font-weight: 600;\n            cursor: pointer;\n            transition: all 0.2s ease;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            gap: 0.5rem;\n        }\n\n        .btn-primary {\n            background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);\n            color: white;\n        }\n\n        .btn-primary:hover:not(:disabled) {\n            background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);\n            transform: translateY(-1px);\n            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.4);\n        }\n\n        .btn-secondary {\n            background: #f3f4f6;\n            color: #374151;\n        }\n\n        .btn-secondary:hover {\n            background: #e5e7eb;\n        }\n\n        .btn:disabled {\n            opacity: 0.5;\n            cursor: not-allowed;\n            transform: none;\n        }\n\n        .alert {\n            padding: 0.75rem 1rem;\n            border-radius: 0.5rem;\n            font-size: 0.875rem;\n            margin-bottom: 1.5rem;\n        }\n\n        .alert-error {\n            background: #fef2f2;\n            border: 1px solid #fecaca;\n            color: #dc2626;\n        }\n\n        .alert-success {\n            background: #f0fdf4;\n            border: 1px solid #bbf7d0;\n            color: #16a34a;\n        }\n\n        .spinner {\n            width: 1.25rem;\n            height: 1.25rem;\n            border: 2px solid white;\n            border-top: 2px solid transparent;\n            border-radius: 50%;\n            animation: spin 1s linear infinite;\n        }\n\n        @keyframes spin {\n            to {\n                transform: rotate(360deg);\n            }\n        }\n\n        .footer {\n            margin-top: 1.5rem;\n            text-align: center;\n        }\n\n        .footer-text {\n            font-size: 0.875rem;\n            color: #6b7280;\n        }\n\n        .hidden {\n            display: none;\n        }\n\n        .dashboard-content {\n            text-align: center;\n        }\n\n        .qr-button {\n            background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);\n            margin-bottom: 1rem;\n        }\n\n        .qr-button:hover:not(:disabled) {\n            background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);\n            transform: translateY(-1px);\n            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.4);\n        }\n\n        @media (max-width: 480px) {\n            .container {\n                padding: 1.5rem;\n                margin: 0.5rem;\n            }\n\n            h1 {\n                font-size: 1.5rem;\n            }\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <!-- Login Form -->\n        <div id=\"loginForm\">\n            <div class=\"header\">\n                <div class=\"icon-container\">\n                    <svg class=\"icon\" viewBox=\"0 0 24 24\">\n                        <path d=\"M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4\"/>\n                        <polyline points=\"10,17 15,12 10,7\"/>\n                        <line x1=\"15\" y1=\"12\" x2=\"3\" y2=\"12\"/>\n                    </svg>\n                </div>\n                <h1>Bem-vindo</h1>\n                <p class=\"subtitle\">Entre em sua conta para continuar</p>\n            </div>\n\n            <form id=\"authForm\">\n                <div class=\"form-group\">\n                    <label for=\"username\">Usuário</label>\n                    <div class=\"input-container\">\n                        <svg class=\"input-icon\" viewBox=\"0 0 24 24\">\n                            <path d=\"M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\"/>\n                            <circle cx=\"12\" cy=\"7\" r=\"4\"/>\n                        </svg>\n                        <input type=\"text\" id=\"username\" placeholder=\"Digite seu usuário\" required>\n                    </div>\n                </div>\n\n                <div class=\"form-group\">\n                    <label for=\"password\">Senha</label>\n                    <div class=\"input-container\">\n                        <svg class=\"input-icon\" viewBox=\"0 0 24 24\">\n                            <rect x=\"3\" y=\"11\" width=\"18\" height=\"11\" rx=\"2\" ry=\"2\"/>\n                            <circle cx=\"12\" cy=\"16\" r=\"1\"/>\n                            <path d=\"M7 11V7a5 5 0 0 1 10 0v4\"/>\n                        </svg>\n                        <input type=\"password\" id=\"password\" placeholder=\"Digite sua senha\" required>\n                    </div>\n                </div>\n\n                <div id=\"errorMessage\" class=\"alert alert-error hidden\"></div>\n                <div id=\"successMessage\" class=\"alert alert-success hidden\"></div>\n\n                <button type=\"submit\" class=\"btn btn-primary\" id=\"loginBtn\">\n                    <svg class=\"icon\" viewBox=\"0 0 24 24\" style=\"width: 1.25rem; height: 1.25rem;\">\n                        <path d=\"M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4\"/>\n                        <polyline points=\"10,17 15,12 10,7\"/>\n                        <line x1=\"15\" y1=\"12\" x2=\"3\" y2=\"12\"/>\n                    </svg>\n                    Entrar\n                </button>\n            </form>\n\n            <div class=\"footer\">\n                <p class=\"footer-text\">Protegido por autenticação segura</p>\n            </div>\n        </div>\n\n        <!-- Dashboard -->\n        <div id=\"dashboard\" class=\"hidden\">\n            <div class=\"header\">\n                <div class=\"icon-container\">\n                    <svg class=\"icon\" viewBox=\"0 0 24 24\">\n                        <circle cx=\"12\" cy=\"12\" r=\"3\"/>\n                        <path d=\"M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z\"/>\n                    </svg>\n                </div>\n                <h1>Dashboard</h1>\n                <p class=\"subtitle\">Gerencie suas instâncias</p>\n            </div>\n\n            <div class=\"dashboard-content\">\n                <div class=\"form-group\">\n                    <label for=\"instanceName\">Nome da Instância</label>\n                    <div class=\"input-container\">\n                        <input type=\"text\" id=\"instanceName\" placeholder=\"Digite o nome da instância\" style=\"padding-left: 0.75rem;\">\n                    </div>\n                </div>\n\n                <div id=\"dashboardError\" class=\"alert alert-error hidden\"></div>\n\n                <button type=\"button\" class=\"btn btn-primary qr-button\" id=\"generateQrBtn\">\n                    <svg class=\"icon\" viewBox=\"0 0 24 24\" style=\"width: 1.25rem; height: 1.25rem;\">\n                        <rect x=\"3\" y=\"3\" width=\"5\" height=\"5\"/>\n                        <rect x=\"3\" y=\"16\" width=\"5\" height=\"5\"/>\n                        <rect x=\"16\" y=\"3\" width=\"5\" height=\"5\"/>\n                        <path d=\"M21 16h-3a2 2 0 0 0-2 2v3\"/>\n                        <path d=\"M21 21v.01\"/>\n                        <path d=\"M12 7v3a2 2 0 0 1-2 2H7\"/>\n                        <path d=\"M3 12h.01\"/>\n                        <path d=\"M12 3h.01\"/>\n                        <path d=\"M12 16v.01\"/>\n                        <path d=\"M16 12h1\"/>\n                        <path d=\"M21 12v.01\"/>\n                        <path d=\"M12 21v-1\"/>\n                    </svg>\n                    Gerar QR Code\n                </button>\n\n                <button type=\"button\" class=\"btn btn-secondary\" id=\"logoutBtn\">\n                    <svg class=\"icon\" viewBox=\"0 0 24 24\" style=\"width: 1.25rem; height: 1.25rem;\">\n                        <path d=\"M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4\"/>\n                        <polyline points=\"16,17 21,12 16,7\"/>\n                        <line x1=\"21\" y1=\"12\" x2=\"9\" y2=\"12\"/>\n                    </svg>\n                    Sair\n                </button>\n            </div>\n        </div>\n    </div>\n\n    <script>\n        // DOM Elements\n        const loginForm = document.getElementById('loginForm');\n        const dashboard = document.getElementById('dashboard');\n        const authForm = document.getElementById('authForm');\n        const loginBtn = document.getElementById('loginBtn');\n        const errorMessage = document.getElementById('errorMessage');\n        const successMessage = document.getElementById('successMessage');\n        const dashboardError = document.getElementById('dashboardError');\n        const generateQrBtn = document.getElementById('generateQrBtn');\n        const logoutBtn = document.getElementById('logoutBtn');\n        const instanceNameInput = document.getElementById('instanceName');\n\n        // State\n        let isLoading = false;\n\n        // Utility functions\n        function showElement(element) {\n            element.classList.remove('hidden');\n        }\n\n        function hideElement(element) {\n            element.classList.add('hidden');\n        }\n\n        function showError(message, container = errorMessage) {\n            container.textContent = message;\n            showElement(container);\n            setTimeout(() => hideElement(container), 5000);\n        }\n\n        function showSuccess(message, container = successMessage) {\n            container.textContent = message;\n            showElement(container);\n        }\n\n        function setLoading(loading) {\n            isLoading = loading;\n            loginBtn.disabled = loading;\n            \n            if (loading) {\n                loginBtn.innerHTML = `\n                    <div class=\"spinner\"></div>\n                    Entrando...\n                `;\n            } else {\n                loginBtn.innerHTML = `\n                    <svg class=\"icon\" viewBox=\"0 0 24 24\" style=\"width: 1.25rem; height: 1.25rem;\">\n                        <path d=\"M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4\"/>\n                        <polyline points=\"10,17 15,12 10,7\"/>\n                        <line x1=\"15\" y1=\"12\" x2=\"3\" y2=\"12\"/>\n                    </svg>\n                    Entrar\n                `;\n            }\n        }\n\n        function switchToLogin() {\n            hideElement(dashboard);\n            showElement(loginForm);\n            // Clear form\n            document.getElementById('username').value = '';\n            document.getElementById('password').value = '';\n            instanceNameInput.value = '';\n            hideElement(errorMessage);\n            hideElement(successMessage);\n            hideElement(dashboardError);\n        }\n\n        function switchToDashboard() {\n            hideElement(loginForm);\n            showElement(dashboard);\n        }\n\n        // Event Listeners\n        authForm.addEventListener('submit', async (e) => {\n            e.preventDefault();\n            \n            if (isLoading) return;\n\n            const username = document.getElementById('username').value.trim();\n            const password = document.getElementById('password').value.trim();\n\n            if (!username || !password) {\n                showError('Por favor, preencha todos os campos');\n                return;\n            }\n\n            setLoading(true);\n            hideElement(errorMessage);\n            hideElement(successMessage);\n\n            try {\n                const response = await fetch('http://localhost:5678/webhook/auth', {\n                    method: 'POST',\n                    headers: {\n                        'Content-Type': 'application/json',\n                    },\n                    body: JSON.stringify({\n                        username: username,\n                        password: password,\n                    }),\n                });\n\n                const data = await response.json();\n\n                if (data.status === 'sucess') {\n                    showSuccess(data.mensagem);\n                    setTimeout(() => {\n                        switchToDashboard();\n                    }, 1000);\n                } else {\n                    showError(data.mensagem);\n                }\n            } catch (error) {\n                console.error('Login error:', error);\n                showError('Erro ao conectar com o servidor. Verifique se o endpoint está ativo.');\n            } finally {\n                setLoading(false);\n            }\n        });\n\n        generateQrBtn.addEventListener('click', () => {\n            const instanceName = instanceNameInput.value.trim();\n            \n            if (!instanceName) {\n                showError('Por favor, insira o nome da instância', dashboardError);\n                return;\n            }\n            \n            hideElement(dashboardError);\n            \n            // Simulate QR code generation\n            alert(`Gerando QR Code para a instância: ${instanceName}`);\n        });\n\n        logoutBtn.addEventListener('click', () => {\n            switchToLogin();\n        });\n\n        // Clear error messages when user starts typing\n        document.getElementById('username').addEventListener('input', () => {\n            hideElement(errorMessage);\n        });\n\n        document.getElementById('password').addEventListener('input', () => {\n            hideElement(errorMessage);\n        });\n\n        instanceNameInput.addEventListener('input', () => {\n            hideElement(dashboardError);\n        });\n\n        // Initialize\n        switchToLogin();\n    </script>\n</body>\n</html>"
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        240,
+        0
+      ],
+      "id": "8104c594-f40b-4c18-a373-727e7ee82bf4",
+      "name": "HTML"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.html }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.3,
+      "position": [
+        520,
+        0
+      ],
+      "id": "66fe88d1-58e4-4c04-a0cf-cb45369770ed",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "path": "html",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "8bdbedf2-cb8b-4e8e-a5b9-b31123d62861",
+      "name": "flame the Html",
+      "webhookId": "b1ffacf5-507a-4b8e-a5c9-aca1b99abadb"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "auth",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        200
+      ],
+      "id": "dd9ec161-2dbc-4d82-b776-39fe016b1991",
+      "name": "Verificar usuário e senha",
+      "webhookId": "20923566-9afe-4033-ba83-c09260505bc9"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1KGx2leKzrd-btaHdJ7SifZKsXOvnKGHF4SVszmm7Ngo",
+          "mode": "list",
+          "cachedResultName": "Tela de Autentification",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1KGx2leKzrd-btaHdJ7SifZKsXOvnKGHF4SVszmm7Ngo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1KGx2leKzrd-btaHdJ7SifZKsXOvnKGHF4SVszmm7Ngo/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        240,
+        200
+      ],
+      "id": "3434cd0c-585a-48e2-958b-62a9c62ed574",
+      "name": "Google Sheets1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ZW8qhVCDYB9RorkI",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4fb7f1de-f574-4ddf-bb74-d02b5d60406f",
+              "leftValue": "={{ $json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        520,
+        200
+      ],
+      "id": "02f6017e-2ea6-4ae6-ba17-d0cc10be0fb4",
+      "name": "If",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n\"status\":\"sucess\",\n\"mensagem\": \"Login efetuado com sucesso\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.3,
+      "position": [
+        820,
+        120
+      ],
+      "id": "008694bd-b7bd-4048-9dd7-1750378fdba8",
+      "name": "Respond to Webhook1"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n\"status\": \"error\",\n\"mensagem\":\"usuário e/ou senha incorretos\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.3,
+      "position": [
+        820,
+        260
+      ],
+      "id": "366c1070-2f19-4714-b914-8837b76c6145",
+      "name": "Respond to Webhook2",
+      "alwaysOutputData": true
+    }
+  ],
+  "pinData": {
+    "Verificar usuário e senha": [
+      {
+        "json": {
+          "headers": {
+            "host": "localhost:5678",
+            "connection": "keep-alive",
+            "content-length": "40",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36",
+            "sec-ch-ua": "\"Google Chrome\";v=\"137\", \"Chromium\";v=\"137\", \"Not/A)Brand\";v=\"24\"",
+            "content-type": "application/json",
+            "sec-ch-ua-mobile": "?0",
+            "accept": "*/*",
+            "origin": "http://localhost:5678",
+            "sec-fetch-site": "same-origin",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-dest": "empty",
+            "referer": "http://localhost:5678/webhook/html",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7",
+            "cookie": "rl_page_init_referrer=RudderEncrypt%3AU2FsdGVkX19oNvVNRAiQN08y42z9NYyzrPYB%2BR%2BnYMk%3D; rl_page_init_referring_domain=RudderEncrypt%3AU2FsdGVkX1%2BxjwzCnPcG5nAEr6FIGemfbo2q12YfT6Q%3D; n8n-auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg2ODY2MWQ3LTIzMGQtNGU3Yi1iYzBiLTA2YjRlMWNlOTY1OSIsImhhc2giOiJPbU42WXRBNkxHIiwiYnJvd3NlcklkIjoiS3VvelJkTGpYby9HMzdrUndHVlRPWExHQ0Q4WFdGenAxQm9aRnp5czNUMD0iLCJpYXQiOjE3NTAwODk2MDMsImV4cCI6MTc1MDY5NDQwM30.jJozqhAByjonHgCCvDI4GEEsxPk959S3H3GV7Sp0xSM; ph_phc_4URIAm1uYfJO7j8kWSe0J8lc8IqnstRLS7Jx8NcakHo_posthog=%7B%22distinct_id%22%3A%22ec78c07f9abf99c22b819d22100f16143e361c51f69e78afa516ebac6fc40c9d%23868661d7-230d-4e7b-bc0b-06b4e1ce9659%22%2C%22%24sesid%22%3A%5B1750097044095%2C%22019779e2-510c-78e7-ba17-f23f35a6e209%22%2C1750096564492%5D%2C%22%24epp%22%3Atrue%2C%22%24initial_person_info%22%3A%7B%22r%22%3A%22%24direct%22%2C%22u%22%3A%22http%3A%2F%2Flocalhost%3A5678%2Fsetup%22%7D%7D; rl_anonymous_id=RudderEncrypt%3AU2FsdGVkX1%2Bi%2BvkRtzqoWbuMPkQe%2B5DL0Rc8PfRaE3v9rxx%2FBqwMj2jqkO4ehN9FhQoVSfi6qqc8bbbNJsP9gQ%3D%3D; rl_session=RudderEncrypt%3AU2FsdGVkX19uB%2FFdbeQDDw8qssEEcwv%2BL6sBLgoWk9CYptgA3cD%2BDFuBpBGXB68W3OGLTjtyMn15xE%2FT5ZxHLT1I6FjXZ6mVlvWZ44za6iFlYiWtVavWRFC%2Fsb2ueLIAY8Aabo6gyJ09UggCw3Y%2ByQ%3D%3D"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "username": "artur",
+            "password": "senh23"
+          },
+          "webhookUrl": "http://localhost:5678/webhook/auth",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "HTML": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "flame the Html": {
+      "main": [
+        [
+          {
+            "node": "HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verificar usuário e senha": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "aa97a707-7a60-4f58-abc8-6e36a4ad22d5",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "ec78c07f9abf99c22b819d22100f16143e361c51f69e78afa516ebac6fc40c9d"
+  },
+  "id": "qz2c4ZviwSzX6K9G",
+  "tags": []
+}
