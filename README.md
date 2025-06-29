@@ -14,4 +14,4 @@ If: Verifica se encontrou o usuário.
 Respond to Webhook: Retorna sucesso ou erro.
 
 HTML: Estrutura visual responsiva e moderna com dashboard.
-<img align="right" height="300" src="https://i.postimg.cc/LsvZ1nwW/Altentifica-o.png"/>
+<img align="center" height="300" src="https://i.postimg.cc/LsvZ1nwW/Altentifica-o.png"/>
