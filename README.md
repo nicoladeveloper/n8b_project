@@ -1,5 +1,5 @@
 # n8b_project
-### ✅ Resumo muito breve:
+### ✅ Resumo do projeto:
 Exibe uma tela de login personalizada, valida as credenciais com dados do Google Sheets e, se corretas, exibe um painel para gerenciamento de instâncias.
 
 🔍 Componentes principais:
